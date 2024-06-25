@@ -1,0 +1,29 @@
+.chart-container {
+  display: flex;
+  justify-content: space-around;
+  background-color: #4e4e4e;
+  padding: 20px;
+  border: 1px solid #6a6a6a;
+  border-radius: 8px;
+  margin: 15px 0 15px 15px;
+
+  .chart-wrapper {
+    width: 45%;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .bar-chart {
+    width: 100%;
+  }
+}
+
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #dbdbdb;
+  text-align: center;
+  margin-bottom: 20px;
+}
