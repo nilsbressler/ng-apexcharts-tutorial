@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CircleChartComponent } from './circle-chart.component';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { CircleChartComponent } from "./circle-chart.component";
 
-describe('SingleCircleChartComponent', () => {
+describe("SingleCircleChartComponent", () => {
   let component: CircleChartComponent;
   let fixture: ComponentFixture<CircleChartComponent>;
 
@@ -15,7 +15,7 @@ describe('SingleCircleChartComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

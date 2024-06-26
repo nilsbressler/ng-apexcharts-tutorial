@@ -1,16 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ChartOptions, SplineChartViewModel } from './types';
-import { NgApexchartsModule } from 'ng-apexcharts';
+import { Component, Input, OnInit } from "@angular/core";
+import { ChartOptions, SplineChartViewModel } from "./types";
+import { NgApexchartsModule } from "ng-apexcharts";
 
 @Component({
-  selector: 'app-spline-chart',
-  templateUrl: './spline-chart.component.html',
-  styleUrls: ['./spline-chart.component.scss'],
+  selector: "app-spline-chart",
+  templateUrl: "./spline-chart.component.html",
+  styleUrls: ["./spline-chart.component.scss"],
   standalone: true,
-  imports: [NgApexchartsModule]
+  imports: [NgApexchartsModule],
 })
 export class SplineChartComponent implements OnInit {
-
   /**
    * The colors specified in the colors array
    * will be assigned in the order of the series.
@@ -28,21 +27,21 @@ export class SplineChartComponent implements OnInit {
       series: [],
       colors: [],
       chart: {
-        type: 'line',
+        type: "line",
         height: 350,
         toolbar: {
           show: false,
         },
       },
       stroke: {
-        curve: 'smooth',
+        curve: "smooth",
       },
       xaxis: {
         categories: [],
       },
       title: {
-        text: 'Spline Chart',
-        align: 'left',
+        text: "Spline Chart",
+        align: "left",
       },
     };
   }
