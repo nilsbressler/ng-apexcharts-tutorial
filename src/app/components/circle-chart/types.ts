@@ -1,9 +1,8 @@
 import {
   ApexChart,
-  ApexGrid,
   ApexNonAxisChartSeries,
   ApexPlotOptions,
-} from 'ng-apexcharts';
+} from "ng-apexcharts";
 
 export interface ChartOptions {
   series: ApexNonAxisChartSeries;
@@ -11,12 +10,11 @@ export interface ChartOptions {
   chart: ApexChart;
   plotOptions: ApexPlotOptions;
   labels: Array<string>;
-  grid: ApexGrid;
 }
 
 export interface CircleChartViewModel {
-  series: ApexNonAxisChartSeries;
-  colors: Array<string>;
-  labels: Array<string> | undefined;
-  showLabel: boolean | undefined;
+  percentage: number;
+  color: string;
+  label: string;
+  showLabel: boolean;
 }

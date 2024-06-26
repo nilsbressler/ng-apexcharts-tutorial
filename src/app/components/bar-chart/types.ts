@@ -4,7 +4,7 @@ import {
   ApexStroke,
   ApexTitleSubtitle,
   ApexXAxis,
-} from 'ng-apexcharts';
+} from "ng-apexcharts";
 
 export interface ChartOptions {
   series: ApexAxisChartSeries;

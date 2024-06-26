@@ -1,16 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ChartOptions, BarChartViewModel } from './types';
-import {NgApexchartsModule} from "ng-apexcharts"; // Assuming you have defined ChartOptions and BarChartViewModel types somewhere
+import { Component, Input, OnInit } from "@angular/core";
+import { ChartOptions, BarChartViewModel } from "./types";
+import { NgApexchartsModule } from "ng-apexcharts"; // Assuming you have defined ChartOptions and BarChartViewModel types somewhere
 
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss'],
+  selector: "app-bar-chart",
+  templateUrl: "./bar-chart.component.html",
+  styleUrls: ["./bar-chart.component.scss"],
   standalone: true,
-  imports: [NgApexchartsModule]
+  imports: [NgApexchartsModule],
 })
 export class BarChartComponent implements OnInit {
-
   /**
    * The colors specified in the colors array
    * will be assigned in the order of the series.
@@ -18,8 +17,8 @@ export class BarChartComponent implements OnInit {
   @Input() options: BarChartViewModel = {
     series: [],
     categories: [],
-    colors: []
-  }
+    colors: [],
+  };
 
   chartOptions: ChartOptions;
 
@@ -28,16 +27,15 @@ export class BarChartComponent implements OnInit {
       series: [],
       colors: [],
       chart: {
-        type: 'bar',
+        type: "bar",
       },
-      stroke: {
-      },
+      stroke: {},
       xaxis: {
         categories: [],
       },
       title: {
-        text: 'Bar Chart',
-        align: 'left',
+        text: "Bar Chart",
+        align: "left",
       },
     };
   }
@@ -49,7 +47,7 @@ export class BarChartComponent implements OnInit {
       xaxis: {
         categories: this.options.categories,
       },
-      colors: this.options.colors
+      colors: this.options.colors,
     };
   }
 }
