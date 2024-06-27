@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SplineChartComponent } from "./spline-chart.component";
+import { SplineChartComponent } from './spline-chart.component';
 
-describe("SplineChartComponent", () => {
+describe('SplineChartComponent', () => {
   let component: SplineChartComponent;
   let fixture: ComponentFixture<SplineChartComponent>;
 
@@ -16,7 +16,7 @@ describe("SplineChartComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

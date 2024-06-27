@@ -8,45 +8,152 @@ This Angular project demonstrates how to create custom components using ApexChar
 
 ### 1. Spline Chart Component
 
-Purpose: Displays a spline (line) chart.
+Displays a spline (line) chart.
 
-**Features:**
+#### Usage:
 
-- Smooth curve for data points.
-- Customizable series, categories, and colors.<br>
+- **Input:** SplineChartViewModel containing series, categories, colors, chartHeight, titleOptions and showToolbar.
 
-**Usage:**
+```ts
+@Input() options: SplineChartViewModel = {
+    series: [
+      {
+        name: 'Laptops',
+        data: [25, 48, 28, 55, 41, 73, 60, 85, 130],
+      },
+      {
+        name: 'Tablets',
+        data: [25, 58, 32, 47, 75, 60, 65, 60, 110],
+      },
+    ],
+    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+    colors: ['#FF5733', '#5EFF33'],
+    chartHeight: 350,
+    titleOptions: {
+      title: 'Placeholder',
+      position: 'center',
+    },
+    showToolbar: true,
+  };
+```
 
-- Input: SplineChartViewModel containing series, categories, and colors.
-- Output: Renders a line chart using ApexCharts.
+---
+
+- **Output:** Renders a line chart using ApexCharts.
+
+```html
+<apx-chart
+  [series]="chartOptions.series"
+  [colors]="chartOptions.colors"
+  [chart]="chartOptions.chart"
+  [xaxis]="chartOptions.xaxis"
+  [stroke]="chartOptions.stroke"
+  [title]="chartOptions.title">
+</apx-chart>
+```
 
 ### 2. Circle Chart Component
 
-**Purpose:** Shows a radial (circle) chart.
+Shows a simple created single radial (circle) chart.
 
-**Features:**
+#### Usage:
 
-- Single or multiple series support.
-- Customizable labels, colors, and label visibility.
+- **Input:** CircleChartViewModel with percentage, labels, chartSize, labelOptions, showLabel, chartColors, and responsive visibility.
 
-**Usage:**
+```ts
+@Input() options: CircleChartViewModel = {
+    percentage: 42,
+    label: 'Placeholder',
+    chartSize: 400,
+    labelOptions: {
+        nameFontSize: '100%',
+        namePosition: 60,
+        valueFontSize: '4.5em',
+        valuePosition: 0,
+    },
+    showLabel: true,
+    chartColors: {
+        mainColor: '#705293',
+        nameColor: '#1a1a1a',
+        valueColor: '#1a1a1a',
+        trackColor: '#989898',
+    },
+    responsive: {
+        breakpoint: 768,
+        chartHeight: 250,
+        labelOptions: {
+            nameFontSize: '90%',
+            namePosition: 35,
+            valueFontSize: '3em',
+            valuePosition: -10,
+        },
+    },
+};
+```
 
-- Input: CircleChartViewModel with series data, labels, colors, and label visibility.
-- Output: Displays a radial chart using ApexCharts.
+---
+
+- **Output:** Displays a radial chart using ApexCharts.
+
+```html
+<apx-chart
+  [series]="chartOptions.series"
+  [chart]="chartOptions.chart"
+  [labels]="chartOptions.labels"
+  [plotOptions]="chartOptions.plotOptions"
+  [colors]="chartOptions.colors"
+  [responsive]="chartOptions.responsive">
+</apx-chart>
+```
 
 ### 3.Bar Chart Component
 
-**Purpose:** Displays a bar chart.
+Displays a bar chart.
 
-**Features:**
+#### Usage
 
-- Vertical bar chart with multiple series.
-- Customizable categories, series data, and colors.
+- **Input:** BarChartViewModel containing series, categories, colors, showToolbar, chartHeight and titleOptions.
 
-**Usage:**
+```ts
+@Input() options: BarChartViewModel = {
+    series: [
+        {
+            name: 'Sales',
+            data: [50, 65, 70, 80, 85, 90, 95, 100, 105],
+        },
+        {
+            name: 'Expenses',
+            data: [45, 55, 60, 65, 70, 75, 80, 85, 90],
+        },
+    ],
+    categories: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9'],
+    colors: ['#FF5733', '#111311'],
+    showToolbar: true,
+    chartHeight: 600,
+    titleOptions: {
+        title: 'Placeholder',
+        position: 'center',
+    },
+};
+```
 
-- Input: BarChartViewModel containing series, categories, and colors.
-- Output: Renders a bar chart using ApexCharts.
+---
+
+- **Output:** Renders a bar chart using ApexCharts.
+
+```html
+<apx-chart
+  [series]="chartOptions.series"
+  [colors]="chartOptions.colors"
+  [chart]="chartOptions.chart"
+  [xaxis]="chartOptions.xaxis"
+  [title]="chartOptions.title">
+</apx-chart>
+```
+
+## View Models
+
+For detailed information about the various view models used in this project, please refer to the `types.ts` files located in the components directory. These files offer comprehensive definitions and descriptions of each model's properties and structure. By consulting these type definitions, you can gain a precise understanding of the data structures and their specific attributes, ensuring accurate implementation and effective utilization within the application.
 
 ## Getting Started
 
