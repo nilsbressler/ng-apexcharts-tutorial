@@ -35,29 +35,11 @@ export class AppComponent {
   circleChartOptions: CircleChartViewModel = {
     percentage: 45,
     label: 'Cirle Chart',
-    chartSize: 400,
-    labelOptions: {
-      nameFontSize: '100%',
-      namePosition: 60,
-      valueFontSize: '4.5em',
-      valuePosition: 0,
-    },
-    showLabel: true,
     chartColors: {
       mainColor: '#9202c5',
-      nameColor: '#092850',
+      labelColor: '#092850',
       valueColor: '#34518a',
       trackColor: '#818181',
-    },
-    responsive: {
-      breakpoint: 700,
-      chartHeight: 150,
-      labelOptions: {
-        nameFontSize: '13px',
-        namePosition: 20,
-        valueFontSize: '1.8em',
-        valuePosition: -15,
-      },
     },
   };
 

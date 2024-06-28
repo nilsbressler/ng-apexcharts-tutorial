@@ -14,102 +14,60 @@ export interface ChartOptions {
   responsive: Array<ApexResponsive>;
 }
 
+/**
+ * **mainColor**: The main color used in the chart.<br>
+ * **labelColor**: The color used for the name label in the chart. <br>
+ * **valueColor**: The color used for the value label in the chart. <br>
+ * **trackColor**: The color used for the track background in the chart. <br>
+ */
 type ChartColors = {
-  /**
-   * The main color used in the chart.
-   */
   mainColor: string;
-
-  /**
-   * The color used for the name label in the chart.
-   */
-  nameColor: string;
-
-  /**
-   * The color used for the value label in the chart.
-   */
+  labelColor: string;
   valueColor: string;
-
-  /**
-   * The color used for the track background in the chart.
-   */
   trackColor: string;
 };
 
+/**
+ * **breakpoint**: The breakpoint for responsive adjustments in pixels.<br>
+ * **chartHeight**: The height of the chart when responsive adjustments are applied. <br>
+ * **labelOptions**: **(Optional)** Options for configuring the labels when responsive adjustments are applied. <br>
+ */
 type ResponsiveOptions = {
-  /**
-   * The breakpoint for responsive adjustments in pixels.
-   */
   breakpoint: number;
-
-  /**
-   * The height of the chart when responsive adjustments are applied.
-   */
   chartHeight: number;
-
-  /**
-   * Options for configuring the labels when responsive adjustments are applied.
-   */
-  labelOptions: LabelOptions;
+  textOptions?: TextOptions;
 };
 
-type LabelOptions = {
-  /**
-   * The font size for the name label in the chart.
-   */
-  nameFontSize: string;
-
-  /**
-   * The vertical position for the name label in the chart.
-   */
-  namePosition: number;
-
-  /**
-   * The font size for the value label in the chart.
-   */
+/**
+ * **labelFontSize**: The font size for the name label in the chart.<br>
+ * **labelPositionY**: The vertical position for the name label in the chart. <br>
+ * **valueFontSize**: The font size for the value label in the chart. <br>
+ * **valuePositionY**: The vertical position for the value label in the chart. <br>
+ */
+type TextOptions = {
+  labelFontSize: string;
+  labelPositionY: number;
   valueFontSize: string;
-
-  /**
-   * The vertical position for the value label in the chart.
-   */
-  valuePosition: number;
+  valuePositionY: number;
 };
 
+/**
+ * **percentage**: The percentage value to be displayed in the circle chart.<br>
+ * **label**: The label text to be displayed on the chart. <br>
+ * **chartColors**: Colors used for different parts of the chart. <br>
+ * **textOptions**: **(Optional)** Options for configuring the text displayed on the chart. <br>
+ * **chartSize**: **(Optional)** The size of the chart in pixels. <br>
+ * **showLabel**: **(Optional)** Flag indicating whether the label should be displayed. <br>
+ * **responsive**: **(Optional)** Options for configuring the chart's responsiveness. <br>
+ */
 export interface CircleChartViewModel {
-  /**
-   * The percentage value to be displayed in the circle chart.
-   */
   percentage: number;
-
-  /**
-   * The label text to be displayed on the chart.
-   */
   label: string;
-
-  /**
-   * The size of the chart in pixels.
-   */
-  chartSize: number;
-
-  /**
-   * Options for configuring the label displayed on the chart.
-   */
-  labelOptions: LabelOptions;
-
-  /**
-   * Flag indicating whether the label should be displayed.
-   */
-  showLabel: boolean;
-
-  /**
-   * Colors used for different parts of the chart.
-   */
   chartColors: ChartColors;
-
-  /**
-   * Options for configuring the chart's responsiveness.
-   */
-  responsive: ResponsiveOptions;
+  textOptions?: TextOptions;
+  chartSize?: number;
+  showLabel?: boolean;
+  responsive?: Array<ResponsiveOptions>;
 }
 
 // Type Guards
@@ -121,23 +79,23 @@ function isChartColors(obj: any): obj is ChartColors {
     obj !== undefined &&
     typeof obj === 'object' &&
     typeof obj.mainColor === 'string' &&
-    typeof obj.nameColor === 'string' &&
+    typeof obj.labelColor === 'string' &&
     typeof obj.valueColor === 'string' &&
     typeof obj.trackColor === 'string'
   );
 }
 
 /**
- * Type guard function to check if an object conforms to the LabelOptions interface.
+ * Type guard function to check if an object conforms to the TextOptions interface.
  */
-function isLabelOptions(obj: any): obj is LabelOptions {
+function isTextOptions(obj: any): obj is TextOptions {
   return (
     obj !== undefined &&
     typeof obj === 'object' &&
-    typeof obj.nameFontSize === 'string' &&
-    typeof obj.namePosition === 'number' &&
+    typeof obj.labelFontSize === 'string' &&
+    typeof obj.labelPositionY === 'number' &&
     typeof obj.valueFontSize === 'string' &&
-    typeof obj.valuePosition === 'number'
+    typeof obj.valuePositionY === 'number'
   );
 }
 
@@ -150,7 +108,7 @@ function isResponsiveOptions(obj: any): obj is ResponsiveOptions {
     typeof obj === 'object' &&
     typeof obj.breakpoint === 'number' &&
     typeof obj.chartHeight === 'number' &&
-    isLabelOptions(obj.labelOptions)
+    (obj.labelOptions === undefined || isTextOptions(obj.labelOptions))
   );
 }
 
@@ -163,10 +121,12 @@ export function isCircleChartViewModel(obj: any): obj is CircleChartViewModel {
     typeof obj === 'object' &&
     typeof obj.percentage === 'number' &&
     typeof obj.label === 'string' &&
-    typeof obj.chartSize === 'number' &&
-    isLabelOptions(obj.labelOptions) &&
-    typeof obj.showLabel === 'boolean' &&
     isChartColors(obj.chartColors) &&
-    isResponsiveOptions(obj.responsive)
+    (obj.textOptions === undefined || isTextOptions(obj.textOptions)) &&
+    (obj.chartSize === undefined || typeof obj.chartSize === 'number') &&
+    (obj.showLabel === undefined || typeof obj.showLabel === 'boolean') &&
+    (obj.responsive === undefined ||
+      (Array.isArray(obj.responsive) &&
+        obj.responsive.every(isResponsiveOptions)))
   );
 }

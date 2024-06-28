@@ -14,48 +14,30 @@ export interface ChartOptions {
   colors: Array<string>;
 }
 
+/**
+ * **title**: The text to be displayed as the title of the chart.<br>
+ * **position**: The position of the title on the chart ('left', 'center', or 'right'). <br>
+ */
 type TitleOptions = {
-  /**
-   * The text to be displayed as the title of the chart.
-   */
   title: string;
-
-  /**
-   * The position of the title on the chart ('left', 'center', or 'right').
-   */
   position: 'left' | 'center' | 'right';
 };
 
+/**
+ * **series**: Data series to be displayed on the bar chart.<br>
+ * **categories**: Categories for the x-axis of the chart. <br>
+ * **colors**: Colors used for the data series in the chart. <br>
+ * **titleOptions**: Options for configuring the chart title. <br>
+ * **chartHeight**: **(Optional)** Height of the chart in pixels. <br>
+ * **showToolbar**: **(Optional)** Flag indicating whether the chart's toolbar should be displayed. <br>
+ */
 export interface BarChartViewModel {
-  /**
-   * Data series to be displayed on the bar chart.
-   */
   series: ApexAxisChartSeries;
-
-  /**
-   * Categories for the x-axis of the chart.
-   */
   categories: Array<string>;
-
-  /**
-   * Colors used for the data series in the chart.
-   */
   colors: Array<string>;
-
-  /**
-   * Options for configuring the chart title.
-   */
   titleOptions: TitleOptions;
-
-  /**
-   * Height of the chart in pixels.
-   */
-  chartHeight: number;
-
-  /**
-   * Flag indicating whether the chart's toolbar should be displayed.
-   */
-  showToolbar: boolean;
+  chartHeight?: number;
+  showToolbar?: boolean;
 }
 
 // Type Guards
@@ -84,9 +66,7 @@ export function isBarChartViewModel(obj: any): obj is SplineChartViewModel {
     Array.isArray(obj.categories) &&
     Array.isArray(obj.colors) &&
     isTitleOptions(obj.titleOptions) &&
-    typeof obj.chartHeight === 'number' &&
-    typeof obj.showToolbar === 'boolean' &&
-    Array.isArray(obj.categories) &&
-    Array.isArray(obj.colors)
+    (obj.chartHeight === undefined || typeof obj.chartHeight === 'number') &&
+    (obj.showToolbar === undefined || typeof obj.showToolbar === 'boolean')
   );
 }

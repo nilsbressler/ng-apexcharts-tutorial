@@ -31,12 +31,10 @@ export class SplineChartComponent implements OnInit {
     ],
     categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
     colors: ['#FF5733', '#5EFF33'],
-    chartHeight: 350,
     titleOptions: {
       title: 'Placeholder',
       position: 'center',
     },
-    showToolbar: true,
   };
 
   chartOptions: ChartOptions;
@@ -69,14 +67,17 @@ export class SplineChartComponent implements OnInit {
    * x-axis categories, and title text and alignment.
    */
   private createChartOptions(options: SplineChartViewModel): ChartOptions {
+    const showToolbar = options.showToolbar ?? true;
+    const chartHeight = options.chartHeight ?? 350;
+
     return {
       series: options.series,
       colors: options.colors,
       chart: {
         type: 'line',
-        height: options.chartHeight,
+        height: chartHeight,
         toolbar: {
-          show: options.showToolbar,
+          show: showToolbar,
         },
       },
       stroke: {

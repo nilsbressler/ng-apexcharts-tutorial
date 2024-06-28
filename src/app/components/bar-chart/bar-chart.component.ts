@@ -27,8 +27,6 @@ export class BarChartComponent implements OnInit {
     ],
     categories: ['Q1', 'Q2', 'Q3', 'Q4', 'Q5', 'Q6', 'Q7', 'Q8', 'Q9'],
     colors: ['#FF5733', '#111311'],
-    showToolbar: true,
-    chartHeight: 600,
     titleOptions: {
       title: 'Placeholder',
       position: 'center',
@@ -65,14 +63,17 @@ export class BarChartComponent implements OnInit {
    * x-axis categories, and title text and alignment.
    */
   private createChartOptions(options: BarChartViewModel): ChartOptions {
+    const showToolbar = options.showToolbar ?? true;
+    const chartHeight = options.chartHeight ?? 500;
+
     return {
       series: options.series,
       colors: options.colors,
       chart: {
         type: 'bar',
-        height: options.chartHeight,
+        height: chartHeight,
         toolbar: {
-          show: options.showToolbar,
+          show: showToolbar,
         },
       },
       xaxis: {

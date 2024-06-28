@@ -17,29 +17,11 @@ export class CircleChartComponent implements OnInit {
   @Input() options: CircleChartViewModel = {
     percentage: 42,
     label: 'Placeholder',
-    chartSize: 400,
-    labelOptions: {
-      nameFontSize: '100%',
-      namePosition: 60,
-      valueFontSize: '4.5em',
-      valuePosition: 0,
-    },
-    showLabel: true,
     chartColors: {
       mainColor: '#705293',
-      nameColor: '#1a1a1a',
+      labelColor: '#1a1a1a',
       valueColor: '#1a1a1a',
       trackColor: '#989898',
-    },
-    responsive: {
-      breakpoint: 768,
-      chartHeight: 250,
-      labelOptions: {
-        nameFontSize: '90%',
-        namePosition: 35,
-        valueFontSize: '3em',
-        valuePosition: -10,
-      },
     },
   };
 
@@ -75,13 +57,24 @@ export class CircleChartComponent implements OnInit {
    * labels (single label), and responsive options for different breakpoints.
    */
   private createChartOptions(options: CircleChartViewModel): ChartOptions {
+    const textOptions = {
+      labelFontSize: options.textOptions?.labelFontSize ?? '100%',
+      labelPositionY: options.textOptions?.labelPositionY ?? 40,
+      valueFontSize: options.textOptions?.valueFontSize ?? '4em',
+      valuePositionY: options.textOptions?.valuePositionY ?? 0,
+    };
+
+    const chartSize = options.chartSize ?? 300;
+
+    const showLabel = options.showLabel ?? true;
+
     return {
       series: [options.percentage],
       colors: [options.chartColors.mainColor],
       chart: {
         type: 'radialBar',
         sparkline: { enabled: true },
-        height: options.chartSize,
+        height: chartSize,
       },
       plotOptions: {
         radialBar: {
@@ -91,49 +84,54 @@ export class CircleChartComponent implements OnInit {
             margin: 0,
           },
           hollow: {
-            size: '58%',
+            size: '60%',
           },
           dataLabels: {
             name: {
-              show: options.showLabel,
-              offsetY: options.labelOptions.namePosition,
-              fontSize: options.labelOptions.nameFontSize,
-              color: options.chartColors.nameColor,
+              show: showLabel,
+              offsetY: textOptions.labelPositionY,
+              fontSize: textOptions.labelFontSize,
+              color: options.chartColors.labelColor,
             },
             value: {
               show: true,
-              offsetY: options.labelOptions.valuePosition,
-              fontSize: options.labelOptions.valueFontSize,
+              offsetY: textOptions.valuePositionY,
+              fontSize: textOptions.valueFontSize,
               color: options.chartColors.valueColor,
             },
           },
         },
       },
       labels: [options.label],
-      responsive: [
-        {
-          breakpoint: options.responsive.breakpoint,
+      responsive:
+        options.responsive?.map(r => ({
+          breakpoint: r.breakpoint,
           options: {
             chart: {
-              height: options.responsive.chartHeight,
+              height: r.chartHeight,
             },
             plotOptions: {
               radialBar: {
                 dataLabels: {
                   name: {
-                    fontSize: options.responsive.labelOptions.nameFontSize,
-                    offsetY: options.responsive.labelOptions.namePosition,
+                    fontSize:
+                      r.textOptions?.labelFontSize ?? textOptions.labelFontSize,
+                    offsetY:
+                      r.textOptions?.labelPositionY ??
+                      textOptions.labelPositionY,
                   },
                   value: {
-                    fontSize: options.responsive.labelOptions.valueFontSize,
-                    offsetY: options.responsive.labelOptions.valuePosition,
+                    fontSize:
+                      r.textOptions?.valueFontSize ?? textOptions.valueFontSize,
+                    offsetY:
+                      r.textOptions?.valuePositionY ??
+                      textOptions.valuePositionY,
                   },
                 },
               },
             },
           },
-        },
-      ],
+        })) ?? [],
     };
   }
 }

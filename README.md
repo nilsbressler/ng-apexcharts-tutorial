@@ -10,6 +10,24 @@ This Angular project demonstrates how to create custom components using ApexChar
 
 Displays a spline (line) chart.
 
+#### Types & Interface
+
+```ts
+type TitleOptions = {
+  title: string; // The text to be displayed as the title of the chart.
+  position: 'left' | 'center' | 'right'; // The position of the title on the chart ('left', 'center', or 'right').
+};
+
+export interface BarChartViewModel {
+  series: ApexAxisChartSeries; // Data series to be displayed on the spline chart.
+  categories: Array<string>; // Categories for the x-axis of the chart.
+  colors: Array<string>; // Colors used for the data series in the chart.
+  titleOptions: TitleOptions; // Options for configuring the chart title.
+  chartHeight?: number; // (Optional) Height of the chart in pixels.
+  showToolbar?: boolean; // (Optional) Flag indicating whether the chart's toolbar should be displayed.
+}
+```
+
 #### Usage:
 
 - **Input:** SplineChartViewModel containing series, categories, colors, chartHeight, titleOptions and showToolbar.
@@ -55,6 +73,40 @@ Displays a spline (line) chart.
 ### 2. Circle Chart Component
 
 Shows a simple created single radial (circle) chart.
+
+#### Types & Interface
+
+```ts
+type ChartColors = {
+  mainColor: string; // The main color used in the chart.
+  labelColor: string; // The color used for the name label in the chart.
+  valueColor: string; // The color used for the value label in the chart.
+  trackColor: string; // The color used for the track background in the chart.
+};
+
+type ResponsiveOptions = {
+  breakpoint: number; // The breakpoint for responsive adjustments in pixels.
+  chartHeight: number; // The height of the chart when responsive adjustments are applied.
+  textOptions?: TextOptions; // (Optional) Options for configuring the labels when responsive adjustments are applied.
+};
+
+type TextOptions = {
+  labelFontSize: string; // The font size for the name label in the chart.
+  labelPositionY: number; // The vertical position for the name label in the chart.
+  valueFontSize: string; // The font size for the value label in the chart.
+  valuePositionY: number; // The vertical position for the value label in the chart.
+};
+
+export interface CircleChartViewModel {
+  percentage: number; // The percentage value to be displayed in the circle chart.
+  label: string; // The label text to be displayed on the chart.
+  chartColors: ChartColors; // Colors used for different parts of the chart.
+  textOptions?: TextOptions; // (Optional) Options for configuring the text displayed on the chart.
+  chartSize?: number; // (Optional) The size of the chart in pixels.
+  showLabel?: boolean; // (Optional) Flag indicating whether the label should be displayed.
+  responsive?: Array<ResponsiveOptions>; // (Optional) Options for configuring the chart's responsiveness.
+}
+```
 
 #### Usage:
 
@@ -109,6 +161,24 @@ Shows a simple created single radial (circle) chart.
 ### 3.Bar Chart Component
 
 Displays a bar chart.
+
+#### Types & Interface
+
+```ts
+type TitleOptions = {
+  title: string; // The text to be displayed as the title of the chart.
+  position: 'left' | 'center' | 'right'; // The position of the title on the chart ('left', 'center', or 'right').
+};
+
+export interface BarChartViewModel {
+  series: ApexAxisChartSeries; // Data series to be displayed on the bar chart.
+  categories: Array<string>; // Categories for the x-axis of the chart.
+  colors: Array<string>; // Colors used for the data series in the chart.
+  titleOptions: TitleOptions; // Options for configuring the chart title.
+  chartHeight?: number; // (Optional) Height of the chart in pixels.
+  showToolbar?: boolean; // (Optional) Flag indicating whether the chart's toolbar should be displayed.
+}
+```
 
 #### Usage
 
